@@ -44,7 +44,7 @@ It must be an array of the transforms you want to use:
       // (if you use React Native, pass "react-native" instead)
       // the second import is the React component to render error
       // (it can be a local path too, like "./src/ErrorReporter")
-      "imports": ["react", "redbox-react/dist/redbox"]
+      "imports": ["react", "redbox-react"]
     }]
     // note: you can put more transforms into array
     // this is just one of them!
