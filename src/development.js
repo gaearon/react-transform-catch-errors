@@ -13,7 +13,15 @@ export default function catchErrors({ filename, components, imports }) {
       try {
         return originalRender.apply(this, arguments);
       } catch (err) {
-        console.error(err);
+        if (console.reportErrorsAsExceptions) {
+          // Stop react-native from triggering it's own error handler
+          console.reportErrorsAsExceptions = false;
+          console.error(err);
+          // Reactivate it so other errors are still handled
+          console.reportErrorsAsExceptions = true;
+        } else {
+          console.error(err);
+        }
         return React.createElement(ErrorReporter, {
           error: err
         });
