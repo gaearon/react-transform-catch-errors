@@ -14,7 +14,7 @@ export default function catchErrors({ filename, components, imports }) {
         return originalRender.apply(this, arguments);
       } catch (err) {
         if (console.reportErrorsAsExceptions) {
-          // Stop react-native from triggering it's own error handler
+          // Stop react-native from triggering its own error handler
           console.reportErrorsAsExceptions = false;
           console.error(err);
           // Reactivate it so other errors are still handled
