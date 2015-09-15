@@ -31,28 +31,35 @@ It must be an array of the transforms you want to use:
 
 ```js
 {
-  "stage": 0,
-  "plugins": [
-    "react-transform"
-  ],
-  "extra": {
-    // must be defined and be an array
-    "react-transform": [{
-      "target": "react-transform-catch-errors",
-      // now go the imports!
-      // the first import is your React distribution
-      // (if you use React Native, pass "react-native" instead)
-      // the second import is the React component to render error
-      // (it can be a local path too, like "./src/ErrorReporter")
-      "imports": ["react", "redbox-react"]
-    }]
-    // note: you can put more transforms into array
-    // this is just one of them!
+  "stage": 0, 
+  "env": {
+    "development": {
+      // this plugin will be included only in development mode, e.g.
+      // if NODE_ENV (or BABEL_ENV) environment variable is not set
+      // or is equal to "development"
+      "plugins": [
+        "react-transform"
+      ],
+      "extra": {
+        // must be defined and be an array
+        "react-transform": [{
+          "target": "react-transform-catch-errors",
+          // now go the imports!
+          // the first import is your React distribution
+          // (if you use React Native, pass "react-native" instead)
+          // the second import is the React component to render error
+          // (it can be a local path too, like "./src/ErrorReporter")
+          "imports": ["react", "redbox-react"]
+        }]
+        // note: you can put more transforms into array
+        // this is just one of them!
+      }
+    }
   }
 }
 ```
 
-This transform has no effect when `process.env.NODE_ENV` is set to `'production'`.
+This transform has no effect when `process.env.NODE_ENV` is set to `'production'`. You can further restrict the environments it runs in by setting them in `.babelrc` as above.
 
 ## License
 
