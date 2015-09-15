@@ -23,7 +23,8 @@ export default function catchErrors({ filename, components, imports }) {
           console.error(err);
         }
         return React.createElement(ErrorReporter, {
-          error: err
+          error: err,
+          filename
         });
       }
     };
