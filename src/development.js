@@ -1,5 +1,6 @@
 export default function catchErrors({ filename, components, imports }) {
   const [React, ErrorReporter, reporterOptions] = imports;
+
   if (!React || !React.Component) {
     throw new Error('imports[0] for react-transform-catch-errors does not look like React.');
   }
@@ -9,6 +10,7 @@ export default function catchErrors({ filename, components, imports }) {
 
   return function wrapToCatchErrors(ReactClass, componentId) {
     const originalRender = ReactClass.prototype.render;
+
     ReactClass.prototype.render = function tryRender() {
       try {
         return originalRender.apply(this, arguments);
@@ -22,14 +24,15 @@ export default function catchErrors({ filename, components, imports }) {
         } else {
           console.error(err);
         }
-        return React.createElement(ErrorReporter,
-          {
-            error: err,
-            filename,
-            ...reporterOptions
-          });
+
+        return React.createElement(ErrorReporter, {
+          error: err,
+          filename,
+          ...reporterOptions
+        });
       }
     };
+
     return ReactClass;
   };
 }
