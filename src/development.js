@@ -1,5 +1,5 @@
 export default function catchErrors({ filename, components, imports }) {
-  const [React, ErrorReporter] = imports;
+  const [React, ErrorReporter, reporterOptions] = imports;
   if (!React || !React.Component) {
     throw new Error('imports[0] for react-transform-catch-errors does not look like React.');
   }
@@ -22,10 +22,12 @@ export default function catchErrors({ filename, components, imports }) {
         } else {
           console.error(err);
         }
-        return React.createElement(ErrorReporter, {
-          error: err,
-          filename
-        });
+        return React.createElement(ErrorReporter,
+          {
+            error: err,
+            filename,
+            ...reporterOptions
+          });
       }
     };
     return ReactClass;
