@@ -31,7 +31,7 @@ It must be an array of the transforms you want to use:
 
 ```js
 {
-  "stage": 0, 
+  "stage": 0,
   "env": {
     "development": {
       // this plugin will be included only in development mode, e.g.
@@ -49,7 +49,9 @@ It must be an array of the transforms you want to use:
           // (if you use React Native, pass "react-native" instead)
           // the second import is the React component to render error
           // (it can be a local path too, like "./src/ErrorReporter")
-          "imports": ["react", "redbox-react"]
+          // the third import is the reporter options
+          // see specific reporter's docs for the options it needs
+          "imports": ["react", "redbox-react", "./reporterOptions"]
         }]
         // note: you can put more transforms into array
         // this is just one of them!
