@@ -33,13 +33,8 @@ It must be an array of the transforms you want to use:
 {
   "stage": 0,
   "env": {
-    "development": {
-      // this plugin will be included only in development mode, e.g.
-      // if NODE_ENV (or BABEL_ENV) environment variable is not set
-      // or is equal to "development"
-      "plugins": [
-        "react-transform"
-      ],
+    // only enable it when process.env.NODE_ENV is 'development' or undefined    "development": {
+      "plugins": ["react-transform"],
       "extra": {
         // must be defined and be an array
         "react-transform": [{
@@ -72,7 +67,7 @@ It must be an array of the transforms you want to use:
 }
 ```
 
-This transform has no effect when `process.env.NODE_ENV` is set to `'production'`. You can further restrict the environments it runs in by setting them in `.babelrc` as above.
+**It is up to you to ensure that the transform is not enabled when you compile the app in production mode.** The easiest way to do this is to put React Transform configuration inside `env.development` in `.babelrc` and ensure you’re calling `babel` with `NODE_ENV=production`. See [babelrc documentation](https://babeljs.io/docs/usage/babelrc/#env-option) for more details about using `env` option.
 
 ## License
 
