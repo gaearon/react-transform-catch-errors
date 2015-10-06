@@ -18,11 +18,11 @@ export default function catchErrors({ filename, components, imports }) {
         if (console.reportErrorsAsExceptions) {
           // Stop react-native from triggering its own error handler
           console.reportErrorsAsExceptions = false;
-          console.error(err);
+          console.error(err.stack);
           // Reactivate it so other errors are still handled
           console.reportErrorsAsExceptions = true;
         } else {
-          console.error(err);
+          console.error(err.stack);
         }
 
         return React.createElement(ErrorReporter, {
