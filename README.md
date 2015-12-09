@@ -1,5 +1,7 @@
 # react-transform-catch-errors
 
+[![react-transform channel on discord](https://img.shields.io/badge/discord-react--transform%40reactiflux-61DAFB.svg?style=flat-square)](http://www.reactiflux.com)
+
 A [React Transform](https://github.com/gaearon/babel-plugin-react-transform) that catches errors inside `render()` function and renders a React component with an error message instead.
 
 It’s up to you to choose the React component to render an error message. For example, you may use [redbox-react](https://github.com/KeywordBrain/redbox-react) that imitates React Native “red screen of death”.
