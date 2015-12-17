@@ -8,7 +8,7 @@ It’s up to you to choose the React component to render an error message. For e
 
 ## Installation
 
-First, install the [Babel plugin](https://raw.githubusercontent.com/gaearon/babel-plugin-react-transform):
+First, install the [Babel plugin](https://github.com/gaearon/babel-plugin-react-transform):
 
 ```
 npm install --save-dev babel-plugin-react-transform
