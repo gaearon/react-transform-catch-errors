@@ -17,13 +17,14 @@ export default function catchErrors({ filename, components, imports }) {
       } catch (err) {
         setTimeout(() => {
           if (typeof console.reportErrorsAsExceptions !== 'undefined') {
+            let prevReportErrorAsExceptions = console.reportErrorsAsExceptions;
             // We're in React Native. Don't throw.
             // Stop react-native from triggering its own error handler
             console.reportErrorsAsExceptions = false;
             // Log an error
             console.error(err);
             // Reactivate it so other errors are still handled
-            console.reportErrorsAsExceptions = true;
+            console.reportErrorsAsExceptions = prevReportErrorAsExceptions;
           } else {
             throw err;
           }
