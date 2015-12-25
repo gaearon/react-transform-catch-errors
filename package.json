@@ -1,6 +1,6 @@
 {
   "name": "react-transform-catch-errors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Transform that catches errors inside React components",
   "main": "lib/index.js",
   "repository": {
