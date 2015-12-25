@@ -55,13 +55,13 @@ It must be an array of the transforms you want to use:
               // the second import is the React component to render error
               // (it can be a local path too, like "./src/ErrorReporter")
   
-              "redbox-react",
+              "redbox-react"
   
               // the third import is OPTIONAL!
               // when specified, its export is used as options to the reporter.
               // see specific reporter's docs for the options it needs.
   
-              // "./src/reporterOptions"
+              // ,  "./src/reporterOptions"
             ]
           }]
           // note: you can put more transforms into array
@@ -70,7 +70,7 @@ It must be an array of the transforms you want to use:
       }
     }
   }
-}
+
 ```
 
 **It is up to you to ensure that the transform is not enabled when you compile the app in production mode.** The easiest way to do this is to put React Transform configuration inside `env.development` in `.babelrc` and ensure you’re calling `babel` with `NODE_ENV=development`. See [babelrc documentation](https://babeljs.io/docs/usage/babelrc/#env-option) for more details about using `env` option.
