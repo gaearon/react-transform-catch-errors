@@ -15,15 +15,19 @@ export default function catchErrors({ filename, components, imports }) {
       try {
         return originalRender.apply(this, arguments);
       } catch (err) {
-        if (console.reportErrorsAsExceptions) {
-          // Stop react-native from triggering its own error handler
-          console.reportErrorsAsExceptions = false;
-          console.error(err.stack);
-          // Reactivate it so other errors are still handled
-          console.reportErrorsAsExceptions = true;
-        } else {
-          console.error(err.stack);
-        }
+        setTimeout(() => {
+          if (typeof console.reportErrorsAsExceptions !== 'undefined') {
+            // We're in React Native. Don't throw.
+            // Stop react-native from triggering its own error handler
+            console.reportErrorsAsExceptions = false;
+            // Log an error
+            console.error(err);
+            // Reactivate it so other errors are still handled
+            console.reportErrorsAsExceptions = true;
+          } else {
+            throw err;
+          }
+        });
 
         return React.createElement(ErrorReporter, {
           error: err,
