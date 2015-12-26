@@ -57,7 +57,11 @@ It must be an array of the transforms you want to use:
             // when specified, its export is used as options to the reporter.
             // see specific reporter's docs for the options it needs.
 
-            // , "./src/reporterOptions"
+            // it will be imported from different files so it either has to be a Node module
+            // or a file that you configure with Webpack/Browserify/SystemJS to resolve correctly.
+            // for example, see https://github.com/gaearon/babel-plugin-react-transform/pull/28#issuecomment-144536185
+
+            // , "my-reporter-options"
           ]
         }]
         // note: you can put more transforms into array
