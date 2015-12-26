@@ -51,13 +51,13 @@ It must be an array of the transforms you want to use:
             // the second import is the React component to render error
             // (it can be a local path too, like "./src/ErrorReporter")
 
-            "redbox-react",
+            "redbox-react"
 
             // the third import is OPTIONAL!
             // when specified, its export is used as options to the reporter.
             // see specific reporter's docs for the options it needs.
 
-            // "./src/reporterOptions"
+            // , "./src/reporterOptions"
           ]
         }]
         // note: you can put more transforms into array
