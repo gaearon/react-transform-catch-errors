@@ -33,41 +33,36 @@ It must be an array of the transforms you want to use:
 
 ```js
 {
-  "stage": 0,
+  "presets": ["es2015", "stage-0"],
   "env": {
     // only enable it when process.env.NODE_ENV is 'development' or undefined
     "development": {
-      "plugins": ["react-transform"],
-      "extra": {
-        // must be an object
-        "react-transform": {
-          // must be an array
-          "transforms": [{
-            "transform": "react-transform-catch-errors",
-            // now go the imports!
-            "imports": [
-  
-              // the first import is your React distribution
-              // (if you use React Native, pass "react-native" instead)
-  
-              "react",
-  
-              // the second import is the React component to render error
-              // (it can be a local path too, like "./src/ErrorReporter")
-  
-              "redbox-react",
-  
-              // the third import is OPTIONAL!
-              // when specified, its export is used as options to the reporter.
-              // see specific reporter's docs for the options it needs.
-  
-              // "./src/reporterOptions"
-            ]
-          }]
-          // note: you can put more transforms into array
-          // this is just one of them!
-        }
-      }
+      "plugins": [["react-transform", {
+        "transforms": [{
+          "transform": "react-transform-catch-errors",
+          // now go the imports!
+          "imports": [
+
+            // the first import is your React distribution
+            // (if you use React Native, pass "react-native" instead)
+
+            "react",
+
+            // the second import is the React component to render error
+            // (it can be a local path too, like "./src/ErrorReporter")
+
+            "redbox-react",
+
+            // the third import is OPTIONAL!
+            // when specified, its export is used as options to the reporter.
+            // see specific reporter's docs for the options it needs.
+
+            // "./src/reporterOptions"
+          ]
+        }]
+        // note: you can put more transforms into array
+        // this is just one of them!
+      }]],
     }
   }
 }
