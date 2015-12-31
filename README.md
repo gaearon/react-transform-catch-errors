@@ -66,7 +66,7 @@ It must be an array of the transforms you want to use:
         }]
         // note: you can put more transforms into array
         // this is just one of them!
-      }]],
+      }]]
     }
   }
 }
