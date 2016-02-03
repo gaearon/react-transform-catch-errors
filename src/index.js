@@ -34,6 +34,8 @@ export default function catchErrors({ filename, components, imports }) {
           error: err,
           filename,
           componentName: ReactClass.displayName,
+          componentState: this.state,
+          componentProps: this.props,
           ...reporterOptions
         });
       }
