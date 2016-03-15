@@ -33,6 +33,9 @@ export default function catchErrors({ filename, components, imports }) {
         return React.createElement(ErrorReporter, {
           error: err,
           filename,
+          componentName: ReactClass.displayName,
+          componentState: this.state,
+          componentProps: this.props,
           ...reporterOptions
         });
       }
