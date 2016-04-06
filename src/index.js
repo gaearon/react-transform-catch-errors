@@ -11,32 +11,35 @@ export default function catchErrors({ filename, components, imports }) {
   return function wrapToCatchErrors(ReactClass, componentId) {
     const originalRender = ReactClass.prototype.render;
 
-    ReactClass.prototype.render = function tryRender() {
-      try {
-        return originalRender.apply(this, arguments);
-      } catch (err) {
-        setTimeout(() => {
-          if (typeof console.reportErrorsAsExceptions !== 'undefined') {
-            let prevReportErrorAsExceptions = console.reportErrorsAsExceptions;
-            // We're in React Native. Don't throw.
-            // Stop react-native from triggering its own error handler
-            console.reportErrorsAsExceptions = false;
-            // Log an error
-            console.error(err);
-            // Reactivate it so other errors are still handled
-            console.reportErrorsAsExceptions = prevReportErrorAsExceptions;
-          } else {
-            throw err;
-          }
-        });
+    Object.defineProperty(ReactClass.prototype, 'render', {
+      configurable: true,
+      value: function tryRender() {
+        try {
+          return originalRender.apply(this, arguments);
+        } catch (err) {
+          setTimeout(() => {
+            if (typeof console.reportErrorsAsExceptions !== 'undefined') {
+              let prevReportErrorAsExceptions = console.reportErrorsAsExceptions;
+              // We're in React Native. Don't throw.
+              // Stop react-native from triggering its own error handler
+              console.reportErrorsAsExceptions = false;
+              // Log an error
+              console.error(err);
+              // Reactivate it so other errors are still handled
+              console.reportErrorsAsExceptions = prevReportErrorAsExceptions;
+            } else {
+              throw err;
+            }
+          });
 
-        return React.createElement(ErrorReporter, {
-          error: err,
-          filename,
-          ...reporterOptions
-        });
+          return React.createElement(ErrorReporter, {
+            error: err,
+            filename,
+            ...reporterOptions
+          });
+        }
       }
-    };
+    });
 
     return ReactClass;
   };
